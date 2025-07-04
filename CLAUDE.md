@@ -12,6 +12,7 @@ The project is structured as a simple collection of standalone bash scripts, eac
 
 - `backup-kv1-secrets.sh`: Recursively backs up all KV1 secrets from a Vault cluster to JSON files
 - `delete-kv1-secrets.sh`: Safely deletes all KV1 secrets under a path after verifying backups exist
+- `update-service-policies.sh`: Modifies service policies to remove secret/ references and add AWS DMZ credential access
 
 ## Dependencies
 
@@ -27,9 +28,10 @@ Scripts use these environment variables:
 
 - `VAULT_ADDR`: Vault server URL (required)
 - `VAULT_TOKEN`: Vault authentication token (required)
-- `BACKUP_DIR`: Custom backup directory (optional, defaults to `./vault-backup`)
+- `BACKUP_DIR`: Custom backup directory (optional, defaults to `./vault-backup` or `./policy-backup`)
 - `SECRET_PATH`: Custom secret path to backup/delete (optional, defaults to `secret/`)
-- `DRY_RUN`: Set to `false` to actually delete secrets (defaults to `true`)
+- `SERVICE_PATH`: Service policy path pattern (optional, defaults to `service/`)
+- `DRY_RUN`: Set to `false` to actually execute operations (defaults to `true`)
 
 ## Script Usage
 
